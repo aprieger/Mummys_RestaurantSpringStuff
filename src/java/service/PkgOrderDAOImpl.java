@@ -1,15 +1,12 @@
 package service;
 
 import java.sql.Types;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import model.PkgOrder;
 import javax.sql.DataSource;
-import org.json.JSONException;
-import org.json.JSONObject;
+import model.CartPkg;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 public class PkgOrderDAOImpl implements PkgOrderDAO{
@@ -84,7 +81,7 @@ public class PkgOrderDAOImpl implements PkgOrderDAO{
     public PkgOrder getSinglePkgOrder(int pkgOrderId){
         Object o[]={pkgOrderId};
         int argsTypes[]={Types.INTEGER};
-        RowMapper mapper=new PackageRowMapper();
+        RowMapper mapper=new PkgOrderRowMapper();
         List l = jdbcTemplate.query("SELECT * FROM PkgOrders WHERE Pkg_Order_Id=?",o,argsTypes,mapper);
         Iterator it=l.iterator();
         model.PkgOrder p=(model.PkgOrder)it.next();
@@ -93,20 +90,26 @@ public class PkgOrderDAOImpl implements PkgOrderDAO{
     @Override
     public List<PkgOrder> getOpenPkgOrdersByCustomer(int Customer_Id){
         Object o[]={Customer_Id};
-        return jdbcTemplate.query("SELECT * FROM PkgOrders WHERE Customer_Id=? AND Is_Open=1",o, new PackageRowMapper());
+        return jdbcTemplate.query("SELECT * FROM PkgOrders WHERE Customer_Id=? AND Is_Open=1",o, new PkgOrderRowMapper());
     }
     @Override
     public List<PkgOrder> getAllPkgOrdersByOrder(int OrderId){
         Object o[]={OrderId};
-        return jdbcTemplate.query("SELECT * FROM PkgOrders WHERE Order_Id=?",o, new PackageRowMapper());
+        return jdbcTemplate.query("SELECT * FROM PkgOrders WHERE Order_Id=?",o, new PkgOrderRowMapper());
     }
     @Override
     public List<PkgOrder> getAllClosedPkgOrders(){
-        return jdbcTemplate.query("SELECT * FROM PkgOrders WHERE Is_Open=0", new PackageRowMapper());
+        return jdbcTemplate.query("SELECT * FROM PkgOrders WHERE Is_Open=0", new PkgOrderRowMapper());
     }
     @Override
     public double getFinalPrice(int customer_id){
         Object[] o={customer_id};
         return jdbcTemplate.queryForObject("SELECT SUM(Price_Per_Pkg*Quantity) FROM PkgOrders WHERE Is_Open=0 AND Customer_Id=?",o,Double.class);
+    }
+    
+    @Override
+    public List<CartPkg> getOpenPkgOrdersByCustomerAll(int Customer_Id){
+        Object o[]={Customer_Id};
+        return jdbcTemplate.query("SELECT * FROM PkgOrders O, Packages P WHERE O.Customer_Id=? AND O.Is_Open=1 AND O.Package_Id=P.Package_Id",o, new CartPkgRowMapper());
     }
 }

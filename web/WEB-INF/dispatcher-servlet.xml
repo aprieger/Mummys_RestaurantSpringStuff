@@ -22,6 +22,8 @@
                 <prop key="menu.htm">menuController</prop>
                 <prop key="package.htm">packageController</prop>
                 <prop key="addtocart.htm">addToCartController</prop>
+                <prop key="cart.htm">cartController</prop>
+                <prop key="cartdelete.htm">cartDeleteController</prop>
             </props>
         </property>
     </bean>
@@ -37,6 +39,7 @@
     <bean name="menuController"
         class="controller.MenuController"
         p:packageDAO-ref="packageDAO"/>
+    
     <bean name="addToCartController"
         class="controller.AddToCartController"
         p:packageDAO-ref="packageDAO"
@@ -45,13 +48,18 @@
     <bean name="packageController"
         class="controller.PackageController"
         p:packageDAO-ref="packageDAO"
-        p:pkgOrderDAO-ref="pkgOrderDAO">
-        <property name="validators" ref="packageValidator" />
-    </bean>
-    
-    <bean name="pkgOrderController"
-        class="controller.PkgOrderController"
         p:pkgOrderDAO-ref="pkgOrderDAO"/>
+    
+    <bean name="cartController"
+        class="controller.CartController"
+        p:packageDAO-ref="packageDAO"
+        p:pkgOrderDAO-ref="pkgOrderDAO"/>
+    
+    <bean name="cartDeleteController"
+        class="controller.CartDeleteController"
+        p:packageDAO-ref="packageDAO"
+        p:pkgOrderDAO-ref="pkgOrderDAO"/>
+    
 
     <bean name="packageDAO" class="service.PackageDAOImpl"></bean>
     <bean name="pkgOrderDAO" class="service.PkgOrderDAOImpl"></bean>

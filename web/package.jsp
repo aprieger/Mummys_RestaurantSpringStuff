@@ -112,12 +112,10 @@
                 <img id="packImg" src="${packageDetails.imageSource}" alt="${packageDetails.imageSource}"/>
             </div>
         </div>
-        <!--<form action="addtocart.htm">-->
-        <form:form method="POST" action="addtocart" modelAttribute="pkgorder">
+        <form:form method="GET" action="addtocart.htm" modelAttribute="pkgOrderDetails">
             <form:input type="hidden" name="id" value="${packageDetails.packageId}" path="packageId"/>
             Quantity:
             <form:input type="text" name="quantity" value="1" path="quantity"/><br>
-            <form:errors path="quantity"/>
             <input type="submit" value="Add To Cart">
         </form:form>
     </body>

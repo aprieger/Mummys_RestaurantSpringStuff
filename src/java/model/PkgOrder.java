@@ -6,7 +6,7 @@ public class PkgOrder {
     private int packageId;
     private int customerId;
     private double pricePerPkg;
-    private int Quantity;
+    private int quantity;
     private int isOpen;
 
     public PkgOrder() {
@@ -18,7 +18,7 @@ public class PkgOrder {
         this.packageId = packageId;
         this.customerId = customerId;
         this.pricePerPkg = pricePerPkg;
-        this.Quantity = Quantity;
+        this.quantity = Quantity;
         this.isOpen = isOpen;
     }
 
@@ -63,11 +63,11 @@ public class PkgOrder {
     }
 
     public int getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public void setQuantity(int Quantity) {
-        this.Quantity = Quantity;
+        this.quantity = Quantity;
     }
 
     public int getIsOpen() {

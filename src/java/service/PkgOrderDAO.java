@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Package;
 import model.PkgOrder;
-import org.json.JSONException;
-import org.json.JSONObject;
+import model.CartPkg;
 
 public interface PkgOrderDAO {  
     public void addOpenPkgOrder(PkgOrder pkgOrder);
@@ -22,4 +21,5 @@ public interface PkgOrderDAO {
     public List<PkgOrder> getAllPkgOrdersByOrder(int OrderId);
     public List<PkgOrder> getAllClosedPkgOrders();
     public double getFinalPrice(int customer_id);
+    public List<CartPkg> getOpenPkgOrdersByCustomerAll(int Customer_Id);
 }

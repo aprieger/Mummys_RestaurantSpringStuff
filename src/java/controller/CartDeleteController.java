@@ -13,8 +13,8 @@ import service.PackageDAO;
 import service.PkgOrderDAO;
 
 @Controller
-@RequestMapping("/addtocart")
-public class AddToCartController{
+@RequestMapping("/cartdelete")
+public class CartDeleteController{
     int customerId=1;
     private PackageDAO packageDAO;
     private PkgOrderDAO pkgOrderDAO;
@@ -26,20 +26,9 @@ public class AddToCartController{
         this.pkgOrderDAO = pkgOrderDAO;
     }
     
-    @RequestMapping(value="/addtocart", method=RequestMethod.GET)
+    @RequestMapping(value="/cartdelete", method=RequestMethod.GET)
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        PkgOrder pkgOrder = new PkgOrder();
-        Package pkg = packageDAO.getSinglePackageData(Integer.parseInt(request.getParameter("packageId")));
-        
-        pkgOrder.setPkgOrderId(pkgOrderDAO.getNextPkgOrderId());
-        pkgOrder.setOrderId(0);
-        pkgOrder.setPackageId(Integer.parseInt(request.getParameter("packageId")));
-        pkgOrder.setCustomerId(customerId);
-        pkgOrder.setPricePerPkg(pkg.getPrice());
-        pkgOrder.setQuantity(Integer.parseInt(request.getParameter("quantity")));
-        pkgOrder.setIsOpen(1);
-        pkgOrderDAO.addOpenPkgOrder(pkgOrder);
-        
+        pkgOrderDAO.deletePkgOrder(Integer.parseInt(request.getParameter("pkgOrderId")));
         return new ModelAndView("redirect:/cart.htm", "pkgOrderList", pkgOrderDAO.getOpenPkgOrdersByCustomer(customerId));
     }
 }
