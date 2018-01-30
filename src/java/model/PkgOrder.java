@@ -1,21 +1,28 @@
-package model;
+package Model;
 
 public class PkgOrder { 
     private int pkgOrderId;
     private int orderId;
-    private int packageId;
+    private int packageIdKey;
     private int customerId;
     private double pricePerPkg;
     private int quantity;
     private int isOpen;
 
     public PkgOrder() {
+        this.pkgOrderId = 0;
+        this.orderId = 0;
+        this.packageIdKey = 0;
+        this.customerId = 0;
+        this.pricePerPkg = 0;
+        this.quantity = 0;
+        this.isOpen = 0;
     }
 
     public PkgOrder(int pkgOrderId, int orderId, int packageId, int customerId, double pricePerPkg, int Quantity, int isOpen) {
         this.pkgOrderId = pkgOrderId;
         this.orderId = orderId;
-        this.packageId = packageId;
+        this.packageIdKey = packageId;
         this.customerId = customerId;
         this.pricePerPkg = pricePerPkg;
         this.quantity = Quantity;
@@ -38,12 +45,12 @@ public class PkgOrder {
         this.orderId = orderId;
     }
 
-    public int getPackageId() {
-        return packageId;
+    public int getPackageIdKey() {
+        return packageIdKey;
     }
 
-    public void setPackageId(int packageId) {
-        this.packageId = packageId;
+    public void setPackageIdKey(int packageIdKey) {
+        this.packageIdKey = packageIdKey;
     }
 
     public int getCustomerId() {

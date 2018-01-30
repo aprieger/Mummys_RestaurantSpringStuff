@@ -16,14 +16,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <link href="css/CustomerMenuUI.css" rel="stylesheet" type="text/css" />
         <script>
             $(document).ready(function() {
                 $('tr').click(function() {
                     var href = $(this).find("td").attr("href");
                     var package = $(this).find("td").attr("package");
                     if(href) {
-                        window.location = href+"?id="+package;
+                        window.location = href+"?packageId="+package;
                     }
                 });
             });
@@ -46,14 +45,10 @@
             .packageImage{
                 width: 10em;
             }
-
             tbody tr:hover.selected td,
             tbody tr:hover td {
               background-color: greenyellow;
               cursor: pointer;
-            }
-            tbody tr.selected td {
-              background-color: green;
             }
         </style>
     </head>

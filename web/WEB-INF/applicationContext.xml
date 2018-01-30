@@ -16,16 +16,19 @@
         <property name="password" value="hr" />
     </bean>
     
-    <bean id="PackageDAO" class="service.PackageDAOImpl">
+    <bean id="PackageDAO" class="DAO.PackageDAOImpl">
         <property name="dataSource" ref="dataSource" />
     </bean>
     
-    <bean id="PkgOrderDAO" class="service.PkgOrderDAOImpl">
+    <bean id="PkgOrderDAO" class="DAO.PkgOrderDAOImpl">
         <property name="dataSource" ref="dataSource" />
     </bean>
     
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource" />
+        <property name="defaultAutoCommit">
+            <value>true</value>
+        </property>
     </bean>
 
 </beans>

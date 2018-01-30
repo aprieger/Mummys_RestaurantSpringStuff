@@ -19,11 +19,13 @@
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
-                <prop key="menu.htm">menuController</prop>
-                <prop key="package.htm">packageController</prop>
-                <prop key="addtocart.htm">addToCartController</prop>
+                <prop key="adminpackages.htm">adminPackagesController</prop>
+                <prop key="adminpackageedit.htm">adminPackageEditController</prop>
                 <prop key="cart.htm">cartController</prop>
                 <prop key="cartdelete.htm">cartDeleteController</prop>
+                <prop key="index.htm">indexController</prop>
+                <prop key="menu.htm">menuController</prop>
+                <prop key="package.htm">packageController</prop>
             </props>
         </property>
     </bean>
@@ -36,36 +38,45 @@
     <!--
     The index controller.
     -->
-    <bean name="menuController"
-        class="controller.MenuController"
-        p:packageDAO-ref="packageDAO"/>
-    
-    <bean name="addToCartController"
-        class="controller.AddToCartController"
+    <bean name="adminPackagesController"
+        class="Controller.AdminPackagesController"
         p:packageDAO-ref="packageDAO"
         p:pkgOrderDAO-ref="pkgOrderDAO"/>
     
-    <bean name="packageController"
-        class="controller.PackageController"
+    <bean name="adminPackageEditController"
+        class="Controller.AdminPackageEditController"
         p:packageDAO-ref="packageDAO"
         p:pkgOrderDAO-ref="pkgOrderDAO"/>
     
     <bean name="cartController"
-        class="controller.CartController"
+        class="Controller.CartController"
         p:packageDAO-ref="packageDAO"
         p:pkgOrderDAO-ref="pkgOrderDAO"/>
     
     <bean name="cartDeleteController"
-        class="controller.CartDeleteController"
+        class="Controller.CartDeleteController"
+        p:packageDAO-ref="packageDAO"
+        p:pkgOrderDAO-ref="pkgOrderDAO"/>
+    
+    <bean name="indexController"
+        class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+        p:viewName="index" />
+    
+    <bean name="menuController"
+        class="Controller.MenuController"
+        p:packageDAO-ref="packageDAO"/>
+    
+    <bean name="packageController"
+        class="Controller.PackageController"
         p:packageDAO-ref="packageDAO"
         p:pkgOrderDAO-ref="pkgOrderDAO"/>
     
 
-    <bean name="packageDAO" class="service.PackageDAOImpl"></bean>
-    <bean name="pkgOrderDAO" class="service.PkgOrderDAOImpl"></bean>
+    <bean name="packageDAO" class="DAO.PackageDAOImpl"></bean>
+    <bean name="pkgOrderDAO" class="DAO.PkgOrderDAOImpl"></bean>
     
     <bean id="packageValidator"
-        class="validator.PackageValidator"
+        class="Validator.PackageValidator"
         p:packageDAO-ref="packageDAO"/>
     
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="messages" />

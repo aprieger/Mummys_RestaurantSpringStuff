@@ -1,10 +1,10 @@
-package validator;
+package Validator;
 
-import model.Package;
+import Model.Package;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import service.PackageDAO;
+import DAO.PackageDAO;
 
 public class PackageValidator implements Validator {
         private PackageDAO packageDAO;

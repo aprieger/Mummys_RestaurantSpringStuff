@@ -9,6 +9,8 @@
     </head>
 
     <body>
-        <p>Got to menu<a href="/Project_MummysRestaurantSpring/menu.htm">here</a></p>
+        <p><a href="menu.htm">Go To Menu</a></p>
+        <p><a href="adminpackages.htm">Go To Admin Packages</a></p>
+        <p><a href="menu.htm">Go To Menu</a></p>
     </body>
 </html>
